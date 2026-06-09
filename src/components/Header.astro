@@ -7,33 +7,39 @@ const { lang = 'zh' } = Astro.props;
 const currentPath = Astro.url.pathname;
 
 const isEn = lang === 'en';
-const basePath = isEn ? currentPath.replace(/^\/en/, '') || '/' : currentPath;
+
+// Determine current base path (without lang prefix)
+let basePath = currentPath;
+if (isEn) {
+  basePath = currentPath.replace(/^\/en/, '') || '/';
+}
 
 const navItems = isEn
   ? [
       { href: '/en/', label: 'Home' },
-      { href: '/en/tech', label: 'Technology' },
-      { href: '/en/impact', label: 'Impact' },
-      { href: '/en/use-well', label: 'Use Wisely' },
-      { href: '/en/resources', label: 'Resources' },
-      { href: '/en/about', label: 'About' },
+      { href: '/en/tech/', label: 'Technology' },
+      { href: '/en/impact/', label: 'Impact' },
+      { href: '/en/use-well/', label: 'Use Wisely' },
+      { href: '/en/resources/', label: 'Resources' },
+      { href: '/en/about/', label: 'About' },
     ]
   : [
-      { href: '/', label: '首页' },
-      { href: '/tech', label: '认识技术' },
-      { href: '/impact', label: '积极影响' },
-      { href: '/use-well', label: '善用技术' },
-      { href: '/resources', label: '资源入口' },
-      { href: '/about', label: '关于' },
+      { href: '/zh/', label: '首页' },
+      { href: '/zh/tech/', label: '认识技术' },
+      { href: '/zh/impact/', label: '积极影响' },
+      { href: '/zh/use-well/', label: '善用技术' },
+      { href: '/zh/resources/', label: '资源入口' },
+      { href: '/zh/about/', label: '关于' },
     ];
 
-const langSwitchHref = isEn ? basePath : `/en${currentPath}`;
+// Language switch: zh <-> en
+const langSwitchHref = isEn ? basePath : `/en${basePath}`;
 const langSwitchLabel = isEn ? '中文' : 'EN';
 ---
 
 <header class="site-header" role="banner">
   <nav class="nav-inner container" aria-label={isEn ? 'Main navigation' : '主导航'}>
-    <a href={isEn ? '/en/' : '/'} class="nav-logo" aria-label={isEn ? 'Silicon Age Home' : 'Silicon Age 首页'}>
+    <a href={isEn ? '/en/' : '/zh/'} class="nav-logo" aria-label={isEn ? 'Silicon Age Home' : 'Silicon Age 首页'}>
       <span class="logo-icon" aria-hidden="true">◇</span>
       <span class="logo-text">Silicon Age</span>
     </a>
@@ -49,7 +55,7 @@ const langSwitchLabel = isEn ? '中文' : 'EN';
         <li>
           <a
             href={item.href}
-            class={currentPath === item.href || (item.href !== (isEn ? '/en/' : '/') && currentPath.startsWith(item.href)) ? 'active' : ''}
+            class={currentPath === item.href || (item.href !== (isEn ? '/en/' : '/zh/') && currentPath.startsWith(item.href)) ? 'active' : ''}
             aria-current={currentPath === item.href ? 'page' : undefined}
           >
             {item.label}
@@ -57,7 +63,7 @@ const langSwitchLabel = isEn ? '中文' : 'EN';
         </li>
       ))}
       <li>
-        <a href={langSwitchHref} class="lang-switch" aria-label={isEn ? 'Switch to Chinese' : '切换到英文'}>
+        <a href={langSwitchHref} class="lang-switch" aria-label={isEn ? '切换到中文' : 'Switch to English'}>
           {langSwitchLabel}
         </a>
       </li>
