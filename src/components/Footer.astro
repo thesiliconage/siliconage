@@ -1,28 +1,72 @@
 ---
-const footerLinks = [
-  { href: '/', label: '首页' },
-  { href: '/tech', label: '认识技术' },
-  { href: '/impact', label: '积极影响' },
-  { href: '/use-well', label: '善用技术' },
-  { href: '/resources', label: '资源入口' },
-  { href: '/about', label: '关于' },
-];
+interface Props {
+  lang?: 'zh' | 'en';
+}
+
+const { lang = 'zh' } = Astro.props;
+const isEn = lang === 'en';
+
+const footerLinks = isEn
+  ? [
+      { href: '/en/', label: 'Home' },
+      { href: '/en/tech', label: 'Technology' },
+      { href: '/en/impact', label: 'Impact' },
+      { href: '/en/use-well', label: 'Use Wisely' },
+      { href: '/en/resources', label: 'Resources' },
+      { href: '/en/about', label: 'About' },
+    ]
+  : [
+      { href: '/', label: '首页' },
+      { href: '/tech', label: '认识技术' },
+      { href: '/impact', label: '积极影响' },
+      { href: '/use-well', label: '善用技术' },
+      { href: '/resources', label: '资源入口' },
+      { href: '/about', label: '关于' },
+    ];
 ---
 
 <footer class="site-footer" role="contentinfo">
   <div class="footer-inner">
     <div class="footer-brand">
       <h3>Silicon Age｜硅基时代</h3>
-      <p>非营利公益网站<br />关注人工智能、信息化与具身智能的积极作用</p>
+      <p>{isEn
+        ? 'Non-profit website dedicated to the positive impact of AI, digitalization, and embodied intelligence.'
+        : '非营利公益网站，关注人工智能、信息化与具身智能的积极作用'
+      }</p>
     </div>
-    <nav class="footer-col" aria-label="页脚导航">
-      <h4>页面</h4>
+    <nav class="footer-col" aria-label={isEn ? 'Footer navigation' : '页脚导航'}>
+      <h4>{isEn ? 'Pages' : '页面'}</h4>
       {footerLinks.map(link => (
         <a href={link.href}>{link.label}</a>
       ))}
     </nav>
   </div>
-  <div class="footer-bottom">
-    <p>非营利公益网站，关注人工智能、信息化与具身智能的积极作用。</p>
-  </div>
 </footer>
+
+<style>
+  .site-footer {
+    padding: 3rem 0 2rem;
+    border-top: 1px solid var(--line);
+    background: var(--ink-2);
+  }
+  .footer-inner {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 0 1.5rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 2rem;
+  }
+  .footer-brand { max-width: 340px; }
+  .footer-brand h3 { font-size: 1.1rem; margin-bottom: .5rem; }
+  .footer-brand p { color: var(--muted); font-size: .85rem; line-height: 1.6; }
+  .footer-col h4 { font-size: .82rem; color: var(--silicon); margin-bottom: .75rem; font-family: var(--font-mono); text-transform: uppercase; letter-spacing: .08em; }
+  .footer-col a { display: block; color: var(--muted); font-size: .88rem; padding: .2rem 0; }
+  .footer-col a:hover { color: var(--paper); }
+
+  @media (max-width: 640px) {
+    .footer-inner { flex-direction: column; }
+  }
+</style>

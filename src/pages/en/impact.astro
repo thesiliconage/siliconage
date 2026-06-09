@@ -1,0 +1,70 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import PageHero from '../../components/PageHero.astro';
+import Section from '../../components/Section.astro';
+import Card from '../../components/Card.astro';
+
+const pageTitle = 'Positive Impact | Silicon Age';
+const pageDesc = 'We focus on technology applications that help more people, improve lives, boost efficiency, and promote public welfare.';
+---
+
+<Layout title={pageTitle} description={pageDesc} lang="en">
+
+  <PageHero
+    title="Technology in Real Life"
+    description="We focus on technology applications that help more people, improve lives, boost efficiency, and promote public welfare."
+  />
+
+  <Section title="Education Support" description="">
+    <div class="single-block">
+      <p>Technology helps more people access learning resources and personalized learning assistance. Online education platforms allow students in remote areas to access quality courses. Intelligent tutoring systems can provide personalized learning suggestions based on each student's progress, making education more equitable and efficient.</p>
+    </div>
+  </Section>
+
+  <Section title="Healthcare Assistance" description="">
+    <div class="single-block">
+      <p>Technology plays a positive role in health literacy, assisted screening, and improved grassroots service efficiency. AI-assisted image analysis helps grassroots doctors improve screening efficiency. Health management applications help users better understand and manage their health. Telemedicine allows residents in remote areas to access professional health consultations.</p>
+    </div>
+  </Section>
+
+  <Section title="Accessibility" description="">
+    <div class="single-block">
+      <p>Technology helps people with visual, hearing, or mobility impairments better participate in digital life. Screen readers allow visually impaired people to access web content. Speech recognition enables hearing-impaired people to participate in conversations through text. Smart prosthetics and exoskeletons help people with mobility impairments regain movement.</p>
+    </div>
+  </Section>
+
+  <Section title="Scientific Research" description="">
+    <div class="single-block">
+      <p>Technology assists literature review, model analysis, and scientific exploration. AI helps researchers quickly sift through massive amounts of literature, simulate complex system behavior, and accelerate scientific discovery. From protein structure prediction to climate model simulation, AI is becoming an important tool for scientific research.</p>
+    </div>
+  </Section>
+
+  <Section title="Public Services" description="">
+    <div class="single-block">
+      <p>Technology improves information inquiry, service processing, and resource allocation efficiency. Smart customer service can answer common questions from citizens 24/7. Online government platforms reduce the need for in-person visits. Smart city systems help managers allocate public resources more rationally.</p>
+    </div>
+  </Section>
+
+  <Section title="Environmental Protection" description="">
+    <div class="single-block">
+      <p>Technology supports environmental monitoring, energy optimization, and disaster early warning. Satellite remote sensing and AI analysis help monitor changes in forest coverage. Smart grids optimize energy distribution and reduce waste. Earthquake early warning systems give the public precious time to seek safety.</p>
+    </div>
+  </Section>
+
+</Layout>
+
+<style>
+  .single-block {
+    max-width: 720px;
+    margin: 0 auto;
+    background: var(--ink-2);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 2rem;
+  }
+  .single-block p {
+    color: var(--muted);
+    font-size: 1rem;
+    line-height: 1.9;
+  }
+</style>

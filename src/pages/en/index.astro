@@ -1,0 +1,111 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Hero from '../../components/Hero.astro';
+import Section from '../../components/Section.astro';
+import Card from '../../components/Card.astro';
+
+const pageTitle = 'Silicon Age | Understanding the Intelligent Era, Harnessing Technology';
+const pageDesc = 'Silicon Age is a non-profit website dedicated to the positive impact of artificial intelligence, digitalization, and embodied intelligence.';
+---
+
+<Layout title={pageTitle} description={pageDesc} lang="en">
+
+  <Hero
+    title="Understanding the Intelligent Era, Harnessing Technology"
+    subtitle="Silicon Age is a non-profit website dedicated to the positive impact of artificial intelligence, digitalization, and embodied intelligence. We advocate for the active, responsible, and ethical use of technology."
+    primaryHref="/en/tech"
+    primaryLabel="Explore Technology"
+    secondaryHref="/en/impact"
+    secondaryLabel="See Positive Impact"
+  />
+
+  <Section title="What We Focus On" description="We focus on technology directions that help more people, improve lives, boost efficiency, and promote public welfare.">
+    <div class="grid-3">
+      <Card icon="🌐" title="Digitalization" tag="Foundation" tagType="silicon">
+        Digital technology enhances information flow, learning collaboration, public services, and social efficiency.
+      </Card>
+      <Card icon="🤖" title="Artificial Intelligence" tag="Core" tagType="iris">
+        AI assists learning, organizing information, unleashing creativity, and improving research and work efficiency.
+      </Card>
+      <Card icon="🦾" title="Embodied Intelligence" tag="Frontier" tagType="copper">
+        Robots and intelligent devices help humans complete repetitive, strenuous, dangerous, or otherwise difficult tasks.
+      </Card>
+    </div>
+  </Section>
+
+  <Section title="Positive Impact of Technology" description="Technology is improving learning, work, life, and public services in many ways.">
+    <div class="grid-3">
+      <Card icon="📚" title="Education Support">
+        Helping more people access learning resources and personalized learning assistance.
+      </Card>
+      <Card icon="🏥" title="Healthcare Assistance">
+        Supporting health literacy, assisted screening, and improved grassroots service efficiency.
+      </Card>
+      <Card icon="♿" title="Accessibility">
+        Helping people with visual, hearing, or mobility impairments better participate in digital life.
+      </Card>
+      <Card icon="🔬" title="Scientific Research">
+        Assisting literature review, model analysis, and scientific exploration.
+      </Card>
+      <Card icon="🏛️" title="Public Services">
+        Improving information inquiry, service processing, and resource allocation efficiency.
+      </Card>
+      <Card icon="🌿" title="Environmental Protection">
+        Supporting environmental monitoring, energy optimization, and disaster early warning.
+      </Card>
+    </div>
+  </Section>
+
+  <Section title="How to Use Technology Wisely" description="Use technology actively, and use it responsibly.">
+    <div class="grid-4">
+      <Card icon="✅" title="Verify Information">
+        AI output needs verification. Important conclusions should not rely solely on automatically generated content.
+      </Card>
+      <Card icon="🧠" title="Keep Thinking">
+        Use technology as an assistant, not a replacement for human judgment.
+      </Card>
+      <Card icon="🤝" title="Respect Others">
+        Do not use technology to deceive, harass, offend, or harm others.
+      </Card>
+      <Card icon="🔒" title="Protect Privacy">
+        Do not input sensitive personal information about yourself or others.
+      </Card>
+    </div>
+  </Section>
+
+  <Section title="Learn More" description="Explore each section of the site to understand the positive value of the intelligent era.">
+    <div class="grid-4">
+      <Card icon="📖" title="Explore Technology" href="/en/tech" tag="Intro" tagType="silicon">
+        Learn the basics of AI, digitalization, and embodied intelligence.
+      </Card>
+      <Card icon="💡" title="Positive Impact" href="/en/impact" tag="Value" tagType="iris">
+        See the positive value of technology in education, healthcare, accessibility, and public services.
+      </Card>
+      <Card icon="🛡️" title="Use Wisely" href="/en/use-well" tag="Practice" tagType="copper">
+        Learn how to use intelligent tools actively, responsibly, and safely.
+      </Card>
+      <Card icon="🔗" title="Resources" href="/en/resources" tag="Coming" tagType="silicon">
+        Free, public-interest, and trustworthy learning resources coming soon.
+      </Card>
+    </div>
+  </Section>
+
+  <Section>
+    <div class="nonprofit-note">
+      <p><strong>Silicon Age</strong> is a non-profit website. No products are sold, no commercial services are offered, and no commercial promotion is conducted.</p>
+    </div>
+  </Section>
+
+</Layout>
+
+<style>
+  .nonprofit-note {
+    text-align: center;
+    padding: 2rem;
+    background: var(--ink-2);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    color: var(--muted);
+    font-size: .9rem;
+  }
+</style>

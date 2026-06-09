@@ -1,0 +1,59 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import PageHero from '../../components/PageHero.astro';
+import Section from '../../components/Section.astro';
+import Card from '../../components/Card.astro';
+
+const pageTitle = 'Resources | Silicon Age';
+const pageDesc = 'Free, public-interest, and trustworthy learning resources.';
+---
+
+<Layout title={pageTitle} description={pageDesc} lang="en">
+
+  <PageHero
+    title="Resources"
+    description="Free, public-interest, and trustworthy learning resources."
+  />
+
+  <Section title="Curation Principles" description="">
+    <div class="grid-3">
+      <Card icon="🆓" title="Free First">
+        Prioritize free and accessible resources and tools to lower the barrier to knowledge.
+      </Card>
+      <Card icon="🤲" title="Public Interest First">
+        Prioritize projects and platforms with public-interest purposes to support positive value.
+      </Card>
+      <Card icon="✅" title="Trustworthy First">
+        Prioritize resources with clear origins, reliable content, and ongoing maintenance.
+      </Card>
+    </div>
+  </Section>
+
+  <Section title="Current Status" description="">
+    <div class="placeholder-box">
+      <div class="placeholder-icon" aria-hidden="true">📦</div>
+      <p>Resource curation in progress. Coming soon.</p>
+    </div>
+  </Section>
+
+</Layout>
+
+<style>
+  .placeholder-box {
+    text-align: center;
+    padding: 3rem 2rem;
+    background: var(--ink-2);
+    border: 1px dashed var(--line-2);
+    border-radius: var(--radius);
+    max-width: 480px;
+    margin: 0 auto;
+  }
+  .placeholder-icon {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+  }
+  .placeholder-box p {
+    color: var(--muted);
+    font-size: .95rem;
+  }
+</style>
