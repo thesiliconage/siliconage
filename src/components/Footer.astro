@@ -1,0 +1,28 @@
+---
+const footerLinks = [
+  { href: '/', label: '首页' },
+  { href: '/tech', label: '认识技术' },
+  { href: '/impact', label: '积极影响' },
+  { href: '/use-well', label: '善用技术' },
+  { href: '/resources', label: '资源入口' },
+  { href: '/about', label: '关于' },
+];
+---
+
+<footer class="site-footer" role="contentinfo">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <h3>Silicon Age｜硅基时代</h3>
+      <p>非营利公益网站<br />关注人工智能、信息化与具身智能的积极作用</p>
+    </div>
+    <nav class="footer-col" aria-label="页脚导航">
+      <h4>页面</h4>
+      {footerLinks.map(link => (
+        <a href={link.href}>{link.label}</a>
+      ))}
+    </nav>
+  </div>
+  <div class="footer-bottom">
+    <p>本站内容仅用于公益传播和一般科普，不构成专业建议。</p>
+  </div>
+</footer>

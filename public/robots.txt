@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://thesiliconage.org/sitemap-index.xml

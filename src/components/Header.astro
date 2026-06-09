@@ -1,0 +1,153 @@
+---
+const currentPath = Astro.url.pathname;
+
+const navItems = [
+  { href: '/', label: '首页' },
+  { href: '/tech', label: '认识技术' },
+  { href: '/impact', label: '积极影响' },
+  { href: '/use-well', label: '善用技术' },
+  { href: '/resources', label: '资源入口' },
+  { href: '/about', label: '关于' },
+];
+---
+
+<header class="site-header" role="banner">
+  <nav class="nav-inner container" aria-label="主导航">
+    <a href="/" class="nav-logo" aria-label="Silicon Age 首页">
+      <span class="logo-icon" aria-hidden="true">◇</span>
+      <span class="logo-text">Silicon Age</span>
+    </a>
+
+    <button class="nav-toggle" aria-label="打开菜单" aria-expanded="false" aria-controls="nav-menu">
+      <span class="nav-toggle-bar" aria-hidden="true"></span>
+      <span class="nav-toggle-bar" aria-hidden="true"></span>
+      <span class="nav-toggle-bar" aria-hidden="true"></span>
+    </button>
+
+    <ul id="nav-menu" class="nav-menu" role="list">
+      {navItems.map(item => (
+        <li>
+          <a
+            href={item.href}
+            class={currentPath === item.href || (item.href !== '/' && currentPath.startsWith(item.href)) ? 'active' : ''}
+            aria-current={currentPath === item.href ? 'page' : undefined}
+          >
+            {item.label}
+          </a>
+        </li>
+      ))}
+    </ul>
+  </nav>
+</header>
+
+<style>
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(12,14,20,.85);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--line);
+    height: var(--nav-height);
+  }
+  .nav-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 100%;
+  }
+  .nav-logo {
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: #fff;
+    text-decoration: none;
+  }
+  .logo-icon {
+    font-size: 1.3rem;
+    color: var(--iris);
+  }
+  .nav-logo:hover { color: #fff; }
+
+  .nav-menu {
+    display: flex;
+    list-style: none;
+    gap: .25rem;
+  }
+  .nav-menu a {
+    display: block;
+    padding: .45rem .85rem;
+    border-radius: var(--radius-sm);
+    font-size: .88rem;
+    color: var(--muted);
+    transition: color .2s, background .2s;
+  }
+  .nav-menu a:hover {
+    color: var(--paper);
+    background: rgba(143,155,196,.08);
+  }
+  .nav-menu a.active {
+    color: var(--iris);
+    background: rgba(116,214,198,.08);
+  }
+
+  .nav-toggle {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: .5rem;
+  }
+  .nav-toggle-bar {
+    width: 22px;
+    height: 2px;
+    background: var(--paper);
+    border-radius: 2px;
+    transition: transform .3s, opacity .3s;
+  }
+
+  @media (max-width: 768px) {
+    .nav-toggle { display: flex; }
+    .nav-menu {
+      position: fixed;
+      top: var(--nav-height);
+      left: 0;
+      right: 0;
+      background: var(--ink-2);
+      border-bottom: 1px solid var(--line);
+      flex-direction: column;
+      padding: 1rem;
+      transform: translateY(-100%);
+      opacity: 0;
+      pointer-events: none;
+      transition: transform .3s, opacity .3s;
+    }
+    .nav-menu.open {
+      transform: translateY(0);
+      opacity: 1;
+      pointer-events: auto;
+    }
+    .nav-menu a {
+      padding: .75rem 1rem;
+      font-size: 1rem;
+    }
+  }
+</style>
+
+<script>
+  const toggle = document.querySelector('.nav-toggle');
+  const menu = document.getElementById('nav-menu');
+  if (toggle && menu) {
+    toggle.addEventListener('click', () => {
+      const expanded = toggle.getAttribute('aria-expanded') === 'true';
+      toggle.setAttribute('aria-expanded', String(!expanded));
+      menu.classList.toggle('open');
+    });
+  }
+</script>

@@ -1,0 +1,69 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PageHero from '../components/PageHero.astro';
+import Section from '../components/Section.astro';
+import Card from '../components/Card.astro';
+
+const pageTitle = '认识技术 | Silicon Age｜硅基时代';
+const pageDesc = '用简洁、克制的方式介绍智能时代的关键技术，帮助公众建立基本理解。';
+---
+
+<Layout title={pageTitle} description={pageDesc}>
+
+  <PageHero
+    title="认识技术，不必先成为专家"
+    description="这里用简洁、克制的方式介绍智能时代的关键技术，帮助公众建立基本理解。"
+  />
+
+  <Section title="信息化" description="">
+    <div class="single-block">
+      <p>信息化让数据、流程和服务更加高效连接，帮助学习、工作和公共服务更便利。从电子政务到在线教育，从数字医疗到智慧城市，信息化正在让社会运行更加透明和高效。</p>
+    </div>
+  </Section>
+
+  <Section title="人工智能" description="">
+    <div class="single-block">
+      <p>人工智能可以辅助人们理解信息、生成想法、整理资料和提升效率。从语音识别到图像理解，从自然语言处理到智能推荐，AI 正在成为人们学习和工作的有力助手。</p>
+    </div>
+  </Section>
+
+  <Section title="具身智能" description="">
+    <div class="single-block">
+      <p>具身智能让 AI 与传感器、机器人和真实环境连接，帮助完成现实世界中的任务。从工业机器人到服务机器人，从自动驾驶到智能仓储，具身智能正在拓展人类能力的边界。</p>
+    </div>
+  </Section>
+
+  <Section title="常见理解提醒" description="">
+    <div class="grid-2">
+      <Card icon="⚠️" title="AI 不是万能答案">
+        人工智能有其适用边界，不能解决所有问题。理解其局限性，才能更好地使用它。
+      </Card>
+      <Card icon="🔍" title="AI 输出需要核实">
+        AI 生成的内容可能存在错误或偏差，重要信息应当通过可靠来源进行验证。
+      </Card>
+      <Card icon="🧑‍💼" title="技术应服务人">
+        技术是帮助人类的工具，不应替代人的责任和判断。关键决策仍需人类把关。
+      </Card>
+      <Card icon="🔐" title="尊重隐私和权益">
+        使用技术时应尊重隐私和他人权益，不输入敏感个人信息，不滥用技术能力。
+      </Card>
+    </div>
+  </Section>
+
+</Layout>
+
+<style>
+  .single-block {
+    max-width: 720px;
+    margin: 0 auto;
+    background: var(--ink-2);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 2rem;
+  }
+  .single-block p {
+    color: var(--muted);
+    font-size: 1rem;
+    line-height: 1.9;
+  }
+</style>

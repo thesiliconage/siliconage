@@ -1,0 +1,103 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PageHero from '../components/PageHero.astro';
+import Section from '../components/Section.astro';
+import Card from '../components/Card.astro';
+
+const pageTitle = '善用技术 | Silicon Age｜硅基时代';
+const pageDesc = '技术的价值在于帮助人更好地学习、创造、协作和生活。积极使用技术，也要合理使用技术。';
+---
+
+<Layout title={pageTitle} description={pageDesc}>
+
+  <PageHero
+    title="把智能，用在对的地方"
+    description="技术的价值在于帮助人更好地学习、创造、协作和生活。积极使用技术，也要合理使用技术。"
+  />
+
+  <Section title="积极使用" description="以下是适合使用 AI 和智能工具的场景。">
+    <div class="grid-3">
+      <Card icon="📖" title="辅助学习" tag="推荐" tagType="iris">
+        使用 AI 帮助理解概念、整理笔记、生成练习题和辅助语言学习。
+      </Card>
+      <Card icon="📋" title="整理资料">
+        使用 AI 帮助归纳文档、提取要点、生成摘要和整理信息。
+      </Card>
+      <Card icon="💼" title="提升办公效率">
+        使用 AI 辅助撰写邮件、整理表格、制作演示文稿和管理日程。
+      </Card>
+      <Card icon="💡" title="激发创意">
+        使用 AI 进行头脑风暴、生成创意方案和辅助设计。
+      </Card>
+      <Card icon="🤲" title="参与公益">
+        使用技术参与志愿服务、信息传播和社区帮助。
+      </Card>
+      <Card icon="👨‍👩‍👧" title="帮助家人">
+        帮助家人理解数字服务，使用智能工具简化日常生活。
+      </Card>
+    </div>
+  </Section>
+
+  <Section title="合理使用" description="使用技术时应当遵循的基本原则。">
+    <div class="grid-3">
+      <Card icon="🔍" title="核实来源">
+        AI 输出的内容应当通过可靠来源验证，不盲目相信。
+      </Card>
+      <Card icon="🧠" title="保留判断">
+        把 AI 作为参考，最终决策仍由人类做出。
+      </Card>
+      <Card icon="©️" title="尊重版权">
+        使用 AI 生成内容时注意知识产权和原创性。
+      </Card>
+      <Card icon="🔒" title="保护隐私">
+        不向 AI 输入自己或他人的敏感个人信息。
+      </Card>
+      <Card icon="❌" title="不生成虚假内容">
+        不使用 AI 编造虚假信息、伪造事实。
+      </Card>
+      <Card icon="🤝" title="不伤害他人">
+        不使用技术骚扰、欺骗、冒犯或操控他人。
+      </Card>
+    </div>
+  </Section>
+
+  <Section title="不建议使用" description="以下场景不建议使用 AI 和智能工具。">
+    <div class="grid-2">
+      <Card icon="🚫" title="不要编造事实" tag="禁止" tagType="copper">
+        不要用 AI 编造事实、伪造数据或生成虚假信息。
+      </Card>
+      <Card icon="🚫" title="不要冒充他人" tag="禁止" tagType="copper">
+        不要用 AI 冒充他人身份、伪造他人言论或欺骗他人。
+      </Card>
+      <Card icon="🚫" title="不要输入敏感信息" tag="禁止" tagType="copper">
+        不要向 AI 输入身份证号、银行卡号、密码等敏感个人信息。
+      </Card>
+      <Card icon="🚫" title="不要滥用技术" tag="禁止" tagType="copper">
+        不要用技术骚扰、欺骗或操控他人，不把 AI 输出直接当作专业结论。
+      </Card>
+    </div>
+  </Section>
+
+  <Section title="隐私提醒" description="">
+    <div class="single-block">
+      <p>使用 AI 工具时，请注意保护个人隐私。不要在对话中输入自己的真实姓名、身份证号、手机号、住址、银行卡号等敏感信息。如果需要处理涉及个人隐私的内容，建议使用本地部署的工具或脱敏后再使用在线服务。</p>
+    </div>
+  </Section>
+
+</Layout>
+
+<style>
+  .single-block {
+    max-width: 720px;
+    margin: 0 auto;
+    background: var(--ink-2);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 2rem;
+  }
+  .single-block p {
+    color: var(--muted);
+    font-size: 1rem;
+    line-height: 1.9;
+  }
+</style>

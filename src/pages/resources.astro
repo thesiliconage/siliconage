@@ -1,0 +1,85 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PageHero from '../components/PageHero.astro';
+import Section from '../components/Section.astro';
+import Card from '../components/Card.astro';
+
+const pageTitle = '资源入口 | Silicon Age｜硅基时代';
+const pageDesc = '这里未来将整理免费、公益、可信的学习资源。当前页面暂不收录第三方链接。';
+---
+
+<Layout title={pageTitle} description={pageDesc}>
+
+  <PageHero
+    title="资源入口"
+    description="这里未来将整理免费、公益、可信的学习资源。当前页面暂不收录第三方链接。"
+  />
+
+  <Section title="收录规则" description="未来资源收录将遵循以下原则。">
+    <div class="grid-2">
+      <Card icon="🆓" title="免费优先">
+        优先收录免费可用的资源和工具，降低公众获取知识的门槛。
+      </Card>
+      <Card icon="🤲" title="公益优先">
+        优先收录以公益为目的的项目和平台，支持正向价值传播。
+      </Card>
+      <Card icon="✅" title="可信优先">
+        优先收录来源明确、内容可靠、持续维护的资源。
+      </Card>
+      <Card icon="🛡️" title="无高风险用途">
+        不收录可能被用于恶意目的的工具和资源。
+      </Card>
+    </div>
+  </Section>
+
+  <Section title="当前状态" description="">
+    <div class="placeholder-box">
+      <div class="placeholder-icon" aria-hidden="true">📦</div>
+      <p>资源整理进行中，暂未收录第三方链接。</p>
+      <p class="placeholder-sub">我们会在确认资源的免费性、公益性和可信度后逐步上线。</p>
+    </div>
+  </Section>
+
+  <Section title="不会收录" description="以下类型的资源不会被收录。">
+    <div class="grid-2">
+      <Card icon="🚫" title="商业工具排行榜">
+        不收录以商业推广为目的的工具推荐和排行榜。
+      </Card>
+      <Card icon="🚫" title="付费产品推荐">
+        不收录需要付费购买的产品和服务推荐。
+      </Card>
+      <Card icon="🚫" title="破解资源">
+        不收录盗版软件、破解工具或侵权内容。
+      </Card>
+      <Card icon="🚫" title="高风险技术资源">
+        不收录可能被用于攻击、入侵、欺诈等恶意目的的技术资源。
+      </Card>
+    </div>
+  </Section>
+
+</Layout>
+
+<style>
+  .placeholder-box {
+    text-align: center;
+    padding: 3rem 2rem;
+    background: var(--ink-2);
+    border: 1px dashed var(--line-2);
+    border-radius: var(--radius);
+    max-width: 480px;
+    margin: 0 auto;
+  }
+  .placeholder-icon {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+  }
+  .placeholder-box p {
+    color: var(--muted);
+    font-size: .95rem;
+  }
+  .placeholder-sub {
+    font-size: .85rem !important;
+    margin-top: .5rem;
+    opacity: .7;
+  }
+</style>
