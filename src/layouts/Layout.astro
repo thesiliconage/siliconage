@@ -17,7 +17,8 @@ const {
   lang = 'zh',
 } = Astro.props;
 
-const canonicalURL = canonical || Astro.site?.href || 'https://thesiliconage.org';
+const siteBase = Astro.site?.href || 'https://thesiliconage.org';
+const canonicalURL = canonical || new URL(Astro.url.pathname, siteBase).href;
 ---
 
 <!DOCTYPE html>
