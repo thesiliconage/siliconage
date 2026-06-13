@@ -15,20 +15,30 @@
       </p>
     </div>
 
-    <!-- Two-column cards -->
+    <!-- Two-column cards with images -->
     <div class="embodied-grid">
       <div class="glass-card ar-card embodied-card animate-on-scroll">
-        <div class="embodied-icon">🏭</div>
-        <h3>Industrial Partnership</h3>
-        <p>On factory floors and in warehouses, intelligent machines take on the heavy, repetitive, and dangerous work — letting people focus on creativity, strategy, and craftsmanship.</p>
-        <div class="card-data mono-label">SECTOR: INDUSTRY 4.0</div>
+        <div class="embodied-image">
+          <img src="/images/factory.jpg" alt="Smart factory with robotic systems" loading="lazy" />
+        </div>
+        <div class="embodied-content">
+          <div class="embodied-icon">🏭</div>
+          <h3>Industrial Partnership</h3>
+          <p>On factory floors and in warehouses, intelligent machines take on the heavy, repetitive, and dangerous work — letting people focus on creativity, strategy, and craftsmanship.</p>
+          <div class="card-data mono-label">SECTOR: INDUSTRY 4.0</div>
+        </div>
       </div>
 
       <div class="glass-card ar-card embodied-card animate-on-scroll">
-        <div class="embodied-icon">🏠</div>
-        <h3>Daily Life Assistance</h3>
-        <p>From assisting the elderly to managing daily chores, AI-powered machines are beginning to lend a helping hand where it matters most — at home.</p>
-        <div class="card-data mono-label">SECTOR: DOMESTIC</div>
+        <div class="embodied-image">
+          <img src="/images/robot-human.jpg" alt="Human-robot collaboration" loading="lazy" />
+        </div>
+        <div class="embodied-content">
+          <div class="embodied-icon">🏠</div>
+          <h3>Daily Life Assistance</h3>
+          <p>From assisting the elderly to managing daily chores, AI-powered machines are beginning to lend a helping hand where it matters most — at home.</p>
+          <div class="card-data mono-label">SECTOR: DOMESTIC</div>
+        </div>
       </div>
     </div>
 
@@ -79,6 +89,26 @@
     font-size: 0.9rem;
     color: var(--text-secondary);
     line-height: 1.7;
+  }
+
+  .embodied-image {
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+    margin-bottom: 1rem;
+  }
+
+  .embodied-image img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    display: block;
+    filter: brightness(0.85) saturate(0.85);
+    transition: filter 0.3s, transform 0.4s;
+  }
+
+  .embodied-card:hover .embodied-image img {
+    filter: brightness(1) saturate(1);
+    transform: scale(1.03);
   }
 
   .card-data {

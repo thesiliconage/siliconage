@@ -21,6 +21,12 @@
           <span class="data-tag">PERCEPTION → COGNITION → ACTION</span>
           <span class="data-tag">HUMAN + MACHINE</span>
         </div>
+
+        <!-- Featured image -->
+        <div class="concept-image animate-on-scroll">
+          <img src="/images/earth-network.jpg" alt="Global intelligence network" />
+          <span class="image-label mono-label">PLANET-SCALE INTELLIGENCE</span>
+        </div>
       </div>
 
       <!-- Right: visual card -->
@@ -147,6 +153,37 @@
     padding-top: 0.75rem;
     border-top: 1px solid var(--glass-border);
     text-align: right;
+  }
+
+  .concept-image {
+    margin-top: 1.5rem;
+    border-radius: var(--radius);
+    overflow: hidden;
+    border: 1px solid var(--glass-border);
+    position: relative;
+  }
+
+  .concept-image img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    display: block;
+    filter: brightness(0.85) saturate(0.85);
+    transition: filter 0.3s;
+  }
+
+  .concept-image:hover img {
+    filter: brightness(1) saturate(1);
+  }
+
+  .concept-image .image-label {
+    position: absolute;
+    bottom: 0.75rem;
+    right: 0.75rem;
+    background: rgba(10, 12, 18, 0.8);
+    padding: 0.2rem 0.6rem;
+    border-radius: 4px;
+    font-size: 0.6rem;
   }
 
   @media (max-width: 768px) {

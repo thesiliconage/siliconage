@@ -12,6 +12,22 @@
       </p>
     </div>
 
+    <!-- Featured images -->
+    <div class="vision-showcase animate-on-scroll">
+      <div class="vision-showcase-item">
+        <img src="/images/education.jpg" alt="Technology-enabled education" loading="lazy" />
+        <span class="showcase-label mono-label">EDUCATION</span>
+      </div>
+      <div class="vision-showcase-item">
+        <img src="/images/agriculture.jpg" alt="Smart agriculture" loading="lazy" />
+        <span class="showcase-label mono-label">AGRICULTURE</span>
+      </div>
+      <div class="vision-showcase-item">
+        <img src="/images/factory.jpg" alt="Industrial automation" loading="lazy" />
+        <span class="showcase-label mono-label">INDUSTRY</span>
+      </div>
+    </div>
+
     <div class="vision-grid">
       <!-- Card 1: Knowledge -->
       <div class="glass-card ar-card ar-card-extra vision-card animate-on-scroll">
@@ -120,6 +136,49 @@
     padding-top: 0.75rem;
     border-top: 1px solid var(--glass-border);
     color: var(--text-muted);
+  }
+
+  .vision-showcase {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.75rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .vision-showcase-item {
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+    border: 1px solid var(--glass-border);
+    position: relative;
+    aspect-ratio: 16/10;
+    transition: border-color 0.3s;
+  }
+
+  .vision-showcase-item:hover {
+    border-color: var(--cyan);
+  }
+
+  .vision-showcase-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    filter: brightness(0.8) saturate(0.85);
+    transition: filter 0.3s;
+  }
+
+  .vision-showcase-item:hover img {
+    filter: brightness(1) saturate(1);
+  }
+
+  .showcase-label {
+    position: absolute;
+    bottom: 0.5rem;
+    left: 0.5rem;
+    background: rgba(10, 12, 18, 0.85);
+    padding: 0.15rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.55rem;
   }
 
   @media (max-width: 768px) {
