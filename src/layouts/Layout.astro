@@ -20,6 +20,8 @@ const {
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content={description} />
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="preload" href="/fonts/inter-var.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="/fonts/jetbrainsmono-var.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="canonical" href={new URL(Astro.url.pathname, Astro.site?.href || 'https://thesiliconage.org').href} />
   <meta property="og:type" content="website" />
   <meta property="og:title" content={title} />
@@ -62,12 +64,18 @@ const {
   <script>
     const canvas = document.getElementById('particle-canvas') as HTMLCanvasElement;
     if (canvas) {
-      const ctx = canvas.getContext('2d')!;
+      const ctx = canvas.getContext('2d');
+      if (ctx) {
       let w = 0, h = 0;
+      let animId = 0;
+      let resizeTimer = 0;
       let mouseX = 0, mouseY = 0;
-      let particles: { x: number; y: number; z: number; vx: number; vy: number; r: number; a: number }[] = [];
-      const COUNT = 100;
-      const CONNECT_DIST = 130;
+      const isMobile = window.matchMedia('(max-width: 768px)').matches;
+      const COUNT = isMobile ? 50 : 100;
+      const CONNECT_DIST = isMobile ? 90 : 130;
+      interface Particle { x: number; y: number; z: number; vx: number; vy: number; r: number; a: number }
+      let particles: Particle[] = [];
+
       function resize() {
         w = canvas.width = window.innerWidth;
         h = canvas.height = window.innerHeight;
@@ -78,7 +86,7 @@ const {
         particles = Array.from({ length: COUNT }, () => ({
           x: Math.random() * w,
           y: Math.random() * h,
-          z: Math.random() * 0.6 + 0.4, // depth
+          z: Math.random() * 0.6 + 0.4,
           vx: (Math.random() - 0.5) * 0.3,
           vy: (Math.random() - 0.5) * 0.3,
           r: Math.random() * 1.2 + 0.4,
@@ -88,10 +96,9 @@ const {
 
       function draw() {
         ctx.clearRect(0, 0, w, h);
-        const px = (mouseX / w - 0.5) * 20;
-        const py = (mouseY / h - 0.5) * 20;
+        const px = w ? (mouseX / w - 0.5) * 20 : 0;
+        const py = h ? (mouseY / h - 0.5) * 20 : 0;
 
-        // Connections
         for (let i = 0; i < particles.length; i++) {
           for (let j = i + 1; j < particles.length; j++) {
             const pi = particles[i], pj = particles[j];
@@ -111,7 +118,6 @@ const {
           }
         }
 
-        // Particles
         for (const p of particles) {
           const x = p.x + px * p.z;
           const y = p.y + py * p.z;
@@ -137,10 +143,22 @@ const {
         animId = requestAnimationFrame(loop);
       }
 
+      document.addEventListener('visibilitychange', () => {
+        if (document.hidden) {
+          if (animId) { cancelAnimationFrame(animId); animId = 0; }
+        } else {
+          if (!animId) loop();
+        }
+      });
+
       init();
       loop();
-      window.addEventListener('resize', resize);
+      window.addEventListener('resize', () => {
+        clearTimeout(resizeTimer);
+        resizeTimer = window.setTimeout(resize, 150);
+      });
       document.addEventListener('mousemove', (e) => { mouseX = e.clientX; mouseY = e.clientY; });
+      }
     }
   </script>
 </body>
