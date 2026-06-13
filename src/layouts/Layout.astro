@@ -19,8 +19,6 @@ const {
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content={description} />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   <link rel="canonical" href={new URL(Astro.url.pathname, Astro.site?.href || 'https://thesiliconage.org').href} />
   <meta property="og:type" content="website" />
@@ -70,8 +68,6 @@ const {
       let particles: { x: number; y: number; z: number; vx: number; vy: number; r: number; a: number }[] = [];
       const COUNT = 100;
       const CONNECT_DIST = 130;
-      let animId = 0;
-
       function resize() {
         w = canvas.width = window.innerWidth;
         h = canvas.height = window.innerHeight;
