@@ -1,0 +1,127 @@
+---
+// Module 3: Embodied AI — stepping into reality
+---
+
+<section class="section embodied-section" id="embodied-ai">
+  <!-- Scan decoration -->
+  <div class="scan-line" aria-hidden="true" style="animation-delay: 2s;"></div>
+
+  <div class="container">
+    <div class="embodied-header">
+      <div class="section-tag animate-on-scroll">Embodied AI</div>
+      <h2 class="section-title animate-on-scroll">Intelligence Beyond the Screen</h2>
+      <p class="section-desc animate-on-scroll">
+        AI is no longer confined to displays and data centers. Embodied intelligence perceives, reasons, and acts within the physical world — assisting humans in complex tasks and freeing people from dangerous and grueling labor.
+      </p>
+    </div>
+
+    <!-- Two-column cards -->
+    <div class="embodied-grid">
+      <div class="glass-card ar-card embodied-card animate-on-scroll">
+        <div class="embodied-icon">🏭</div>
+        <h3>Industrial Partnership</h3>
+        <p>In manufacturing floors and warehouses, embodied robots work alongside humans — handling heavy loads, precision assembly, and hazardous operations with tireless accuracy.</p>
+        <div class="card-data mono-label">SECTOR: INDUSTRY 4.0</div>
+      </div>
+
+      <div class="glass-card ar-card embodied-card animate-on-scroll">
+        <div class="embodied-icon">🏠</div>
+        <h3>Daily Life Assistance</h3>
+        <p>From household chores to elderly care, embodied AI extends a helping hand into the most intimate spaces — enhancing independence and quality of life for everyone.</p>
+        <div class="card-data mono-label">SECTOR: DOMESTIC</div>
+      </div>
+    </div>
+
+    <!-- Central highlight -->
+    <div class="embodied-highlight animate-on-scroll">
+      <blockquote>
+        <p>"The true power of AI is realized when it can touch, move, and transform the physical world — not just process its data."</p>
+      </blockquote>
+    </div>
+  </div>
+</section>
+
+<style>
+  .embodied-section {
+    background: linear-gradient(180deg, var(--bg-deep) 0%, var(--bg-secondary) 50%, var(--bg-deep) 100%);
+  }
+
+  .embodied-header {
+    text-align: center;
+    max-width: 660px;
+    margin: 0 auto 3.5rem;
+  }
+
+  .embodied-header .section-tag { justify-content: center; }
+  .embodied-header .section-tag::before { display: none; }
+
+  .embodied-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    margin-bottom: 3rem;
+  }
+
+  .embodied-card { padding: 2rem; }
+
+  .embodied-icon {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    line-height: 1;
+  }
+
+  .embodied-card h3 {
+    font-size: 1.1rem;
+    margin-bottom: 0.6rem;
+  }
+
+  .embodied-card p {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    line-height: 1.7;
+  }
+
+  .card-data {
+    margin-top: 1.25rem;
+    padding-top: 0.75rem;
+    border-top: 1px solid var(--glass-border);
+    color: var(--text-muted);
+  }
+
+  .embodied-highlight {
+    max-width: 700px;
+    margin: 0 auto;
+    text-align: center;
+    padding: 2.5rem 2rem;
+    background: var(--glass);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius);
+    position: relative;
+  }
+
+  .embodied-highlight::before {
+    content: '"';
+    position: absolute;
+    top: -0.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 5rem;
+    font-family: Georgia, serif;
+    color: var(--magenta);
+    opacity: 0.12;
+    line-height: 1;
+  }
+
+  .embodied-highlight p {
+    font-size: 1.05rem;
+    font-style: italic;
+    color: var(--text);
+    line-height: 1.8;
+  }
+
+  @media (max-width: 768px) {
+    .embodied-grid { grid-template-columns: 1fr; }
+  }
+</style>

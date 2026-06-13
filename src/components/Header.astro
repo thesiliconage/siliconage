@@ -1,200 +1,178 @@
 ---
-interface Props {
-  lang?: 'zh' | 'en';
-}
-
-const { lang = 'zh' } = Astro.props;
-const currentPath = Astro.url.pathname;
-
-const isEn = lang === 'en';
-
-// Determine current base path (without lang prefix)
-let basePath = currentPath;
-if (isEn) {
-  basePath = currentPath.replace(/^\/en/, '') || '/';
-}
-
-const navItems = isEn
-  ? [
-      { href: '/en/', label: 'Home' },
-      { href: '/en/tech/', label: 'Technology' },
-      { href: '/en/impact/', label: 'Impact' },
-      { href: '/en/use-well/', label: 'Use Wisely' },
-      { href: '/en/resources/', label: 'Resources' },
-      { href: '/en/about/', label: 'About' },
-    ]
-  : [
-      { href: '/zh/', label: '首页' },
-      { href: '/zh/tech/', label: '认识技术' },
-      { href: '/zh/impact/', label: '积极影响' },
-      { href: '/zh/use-well/', label: '善用技术' },
-      { href: '/zh/resources/', label: '资源入口' },
-      { href: '/zh/about/', label: '关于' },
-    ];
-
-// Language switch: zh <-> en
-const langSwitchHref = isEn ? basePath : `/en${basePath}`;
-const langSwitchLabel = isEn ? '中文' : 'EN';
+// Sticky glass header with AR aesthetic
 ---
 
-<header class="site-header" role="banner">
-  <nav class="nav-inner container" aria-label={isEn ? 'Main navigation' : '主导航'}>
-    <a href={isEn ? '/en/' : '/zh/'} class="nav-logo" aria-label={isEn ? 'Silicon Age Home' : 'Silicon Age 首页'}>
-      <span class="logo-icon" aria-hidden="true">◇</span>
-      <span class="logo-text">Silicon Age</span>
+<header class="site-header">
+  <div class="header-inner container">
+    <a href="/" class="header-logo" aria-label="Silicon Age Home">
+      <span class="logo-diamond">◆</span>
+      <span class="logo-text">SILICON <span class="logo-accent">AGE</span></span>
     </a>
-
-    <button class="nav-toggle" aria-label={isEn ? 'Open menu' : '打开菜单'} aria-expanded="false" aria-controls="nav-menu">
-      <span class="nav-toggle-bar" aria-hidden="true"></span>
-      <span class="nav-toggle-bar" aria-hidden="true"></span>
-      <span class="nav-toggle-bar" aria-hidden="true"></span>
+    <nav class="header-nav" aria-label="Main navigation">
+      <a href="#concept">Concept</a>
+      <a href="#embodied-ai">Embodied AI</a>
+      <a href="#vision">Vision</a>
+    </nav>
+    <button class="mobile-menu-btn" aria-label="Toggle menu" aria-expanded="false">
+      <span></span><span></span><span></span>
     </button>
-
-    <ul id="nav-menu" class="nav-menu" role="list">
-      {navItems.map(item => (
-        <li>
-          <a
-            href={item.href}
-            class={currentPath === item.href || (item.href !== (isEn ? '/en/' : '/zh/') && currentPath.startsWith(item.href)) ? 'active' : ''}
-            aria-current={currentPath === item.href ? 'page' : undefined}
-          >
-            {item.label}
-          </a>
-        </li>
-      ))}
-      <li>
-        <a href={langSwitchHref} class="lang-switch" aria-label={isEn ? '切换到中文' : 'Switch to English'}>
-          {langSwitchLabel}
-        </a>
-      </li>
-    </ul>
-  </nav>
+  </div>
 </header>
+
+<div class="mobile-nav-overlay" id="mobile-nav" aria-hidden="true">
+  <nav class="mobile-nav-inner">
+    <a href="#concept">Concept</a>
+    <a href="#embodied-ai">Embodied AI</a>
+    <a href="#vision">Vision</a>
+  </nav>
+</div>
 
 <style>
   .site-header {
-    position: sticky;
-    top: 0;
+    position: fixed;
+    top: 0; left: 0; right: 0;
     z-index: 100;
-    background: rgba(12,14,20,.85);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border-bottom: 1px solid var(--line);
-    height: var(--nav-height);
+    background: rgba(5, 5, 5, 0.6);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.04);
   }
-  .nav-inner {
+
+  .header-inner {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    height: 100%;
+    height: var(--nav-height);
   }
-  .nav-logo {
+
+  .header-logo {
     display: flex;
     align-items: center;
-    gap: .5rem;
-    font-family: var(--font-heading);
+    gap: 0.6rem;
+    font-family: var(--font-mono);
+    font-size: 1rem;
     font-weight: 700;
-    font-size: 1.1rem;
-    color: #fff;
+    color: var(--text);
+    letter-spacing: 0.1em;
     text-decoration: none;
   }
-  .logo-icon {
-    font-size: 1.3rem;
-    color: var(--iris);
-  }
-  .nav-logo:hover { color: #fff; }
 
-  .nav-menu {
-    display: flex;
-    list-style: none;
-    gap: .25rem;
-    align-items: center;
-  }
-  .nav-menu a {
-    display: block;
-    padding: .45rem .85rem;
-    border-radius: var(--radius-sm);
-    font-size: .88rem;
-    color: var(--muted);
-    transition: color .2s, background .2s;
-  }
-  .nav-menu a:hover {
-    color: var(--paper);
-    background: rgba(143,155,196,.08);
-  }
-  .nav-menu a.active {
-    color: var(--iris);
-    background: rgba(116,214,198,.08);
+  .header-logo:hover { opacity: 1; color: var(--text); }
+
+  .logo-diamond {
+    color: var(--cyan);
+    font-size: 1.2rem;
+    text-shadow: 0 0 12px var(--cyan-dim);
+    animation: glowPulse 3s ease-in-out infinite;
   }
 
-  .lang-switch {
-    font-family: var(--font-mono);
-    font-size: .82rem !important;
-    padding: .35rem .7rem !important;
-    border: 1px solid var(--line-2) !important;
-    border-radius: 6px !important;
-    color: var(--silicon-bright) !important;
-    letter-spacing: .04em;
-  }
-  .lang-switch:hover {
-    border-color: var(--iris) !important;
-    color: var(--iris) !important;
-    background: rgba(116,214,198,.06) !important;
+  .logo-accent { color: var(--cyan); }
+
+  .header-nav { display: flex; gap: 2.5rem; }
+
+  .header-nav a {
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--text-secondary);
+    letter-spacing: 0.04em;
+    position: relative;
+    transition: color 0.2s;
   }
 
-  .nav-toggle {
+  .header-nav a::after {
+    content: '';
+    position: absolute;
+    bottom: -4px; left: 0;
+    width: 0; height: 1px;
+    background: var(--cyan);
+    transition: width 0.3s;
+  }
+
+  .header-nav a:hover { color: var(--cyan); opacity: 1; }
+  .header-nav a:hover::after { width: 100%; }
+
+  .mobile-menu-btn {
     display: none;
     flex-direction: column;
     gap: 5px;
     background: none;
     border: none;
     cursor: pointer;
-    padding: .5rem;
-  }
-  .nav-toggle-bar {
-    width: 22px;
-    height: 2px;
-    background: var(--paper);
-    border-radius: 2px;
-    transition: transform .3s, opacity .3s;
+    padding: 4px;
   }
 
+  .mobile-menu-btn span {
+    display: block;
+    width: 22px;
+    height: 2px;
+    background: var(--text-secondary);
+    border-radius: 2px;
+    transition: transform 0.3s, opacity 0.3s;
+  }
+
+  .mobile-menu-btn.active span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .mobile-menu-btn.active span:nth-child(2) { opacity: 0; }
+  .mobile-menu-btn.active span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+  .mobile-nav-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 99;
+    background: rgba(5, 5, 5, 0.95);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+
+  .mobile-nav-overlay.open { opacity: 1; }
+
+  .mobile-nav-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    gap: 2.5rem;
+  }
+
+  .mobile-nav-inner a {
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: var(--text-secondary);
+    letter-spacing: 0.08em;
+    transition: color 0.2s;
+  }
+
+  .mobile-nav-inner a:hover { color: var(--cyan); }
+
   @media (max-width: 768px) {
-    .nav-toggle { display: flex; }
-    .nav-menu {
-      position: fixed;
-      top: var(--nav-height);
-      left: 0;
-      right: 0;
-      background: var(--ink-2);
-      border-bottom: 1px solid var(--line);
-      flex-direction: column;
-      padding: 1rem;
-      transform: translateY(-100%);
-      opacity: 0;
-      pointer-events: none;
-      transition: transform .3s, opacity .3s;
-    }
-    .nav-menu.open {
-      transform: translateY(0);
-      opacity: 1;
-      pointer-events: auto;
-    }
-    .nav-menu a {
-      padding: .75rem 1rem;
-      font-size: 1rem;
-    }
+    .header-nav { display: none; }
+    .mobile-menu-btn { display: flex; }
+    .mobile-nav-overlay { display: block; }
   }
 </style>
 
 <script>
-  const toggle = document.querySelector('.nav-toggle');
-  const menu = document.getElementById('nav-menu');
-  if (toggle && menu) {
-    toggle.addEventListener('click', () => {
-      const expanded = toggle.getAttribute('aria-expanded') === 'true';
-      toggle.setAttribute('aria-expanded', String(!expanded));
-      menu.classList.toggle('open');
+  const btn = document.querySelector('.mobile-menu-btn');
+  const overlay = document.getElementById('mobile-nav');
+  if (btn && overlay) {
+    btn.addEventListener('click', () => {
+      const open = btn.classList.toggle('active');
+      overlay.classList.toggle('open', open);
+      overlay.setAttribute('aria-hidden', String(!open));
+      btn.setAttribute('aria-expanded', String(open));
+      document.body.style.overflow = open ? 'hidden' : '';
+    });
+    overlay.querySelectorAll('a').forEach((a) => {
+      a.addEventListener('click', () => {
+        btn.classList.remove('active');
+        overlay.classList.remove('open');
+        overlay.setAttribute('aria-hidden', 'true');
+        btn.setAttribute('aria-expanded', 'false');
+        document.body.style.overflow = '';
+      });
     });
   }
 </script>

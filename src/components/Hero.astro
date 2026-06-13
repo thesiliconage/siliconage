@@ -1,98 +1,241 @@
 ---
-interface Props {
-  title: string;
-  subtitle: string;
-  primaryHref?: string;
-  primaryLabel?: string;
-  secondaryHref?: string;
-  secondaryLabel?: string;
-}
-
-const { title, subtitle, primaryHref, primaryLabel, secondaryHref, secondaryLabel } = Astro.props;
+// Hero section — full-screen holographic landing
 ---
 
-<section class="hero">
-  <div class="hero-bg" aria-hidden="true">
-    <div class="hero-grid"></div>
-    <div class="hero-glow"></div>
-  </div>
+<section class="hero" id="hero">
+  <!-- Decorative orbs -->
+  <div class="hero-orb hero-orb-cyan" aria-hidden="true"></div>
+  <div class="hero-orb hero-orb-magenta" aria-hidden="true"></div>
+
+  <!-- Grid overlay -->
+  <div class="hero-grid" aria-hidden="true"></div>
+
+  <!-- Scan line -->
+  <div class="scan-line" aria-hidden="true"></div>
+
   <div class="container hero-content">
-    <div class="hero-badge">
-      <span class="tag tag-iris">非营利公益</span>
+    <div class="hero-badge animate-on-scroll">
+      <span class="badge-dot"></span>
+      <span class="mono-label">SYSTEM ONLINE</span>
     </div>
-    <h1 class="hero-title">{title}</h1>
-    <p class="hero-subtitle">{subtitle}</p>
-    <div class="hero-actions">
-      {primaryHref && <a href={primaryHref} class="btn btn-primary">{primaryLabel}</a>}
-      {secondaryHref && <a href={secondaryHref} class="btn btn-secondary">{secondaryLabel}</a>}
+
+    <h1 class="hero-title animate-on-scroll">
+      <span class="title-en">Silicon Age</span>
+      <span class="title-zh">硅基时代</span>
+    </h1>
+
+    <p class="hero-subtitle animate-on-scroll">
+      Where computation, intelligence, and the physical world seamlessly interweave.
+    </p>
+
+    <p class="hero-lead animate-on-scroll">
+      When intelligence extends from the digital realm into physical space, a new era of harmonious co-building between humans and machines is dawning.
+    </p>
+
+    <!-- AR-style data readout -->
+    <div class="hero-readout animate-on-scroll">
+      <div class="readout-item">
+        <span class="readout-label">STATUS</span>
+        <span class="readout-value">OPERATIONAL</span>
+      </div>
+      <div class="readout-divider"></div>
+      <div class="readout-item">
+        <span class="readout-label">ERA</span>
+        <span class="readout-value">2026 →</span>
+      </div>
+      <div class="readout-divider"></div>
+      <div class="readout-item">
+        <span class="readout-label">MISSION</span>
+        <span class="readout-value">EMPOWER HUMANITY</span>
+      </div>
     </div>
+  </div>
+
+  <!-- Scroll hint -->
+  <div class="scroll-hint" aria-hidden="true">
+    <div class="scroll-line"></div>
+    <span class="mono-label">SCROLL</span>
   </div>
 </section>
 
 <style>
   .hero {
     position: relative;
-    padding: 6rem 0 5rem;
-    overflow: hidden;
-    min-height: 520px;
+    min-height: 100vh;
     display: flex;
     align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    z-index: 1;
   }
-  .hero-bg {
+
+  .hero-orb {
     position: absolute;
-    inset: 0;
-    z-index: 0;
+    border-radius: 50%;
+    filter: blur(120px);
+    pointer-events: none;
   }
+
+  .hero-orb-cyan {
+    width: 500px; height: 500px;
+    top: 15%; left: -8%;
+    background: radial-gradient(circle, rgba(0, 240, 255, 0.07) 0%, transparent 70%);
+    animation: float 8s ease-in-out infinite;
+  }
+
+  .hero-orb-magenta {
+    width: 400px; height: 400px;
+    bottom: 10%; right: -5%;
+    background: radial-gradient(circle, rgba(176, 38, 255, 0.05) 0%, transparent 70%);
+    animation: float 10s ease-in-out infinite reverse;
+  }
+
   .hero-grid {
     position: absolute;
     inset: 0;
     background-image:
-      linear-gradient(var(--line) 1px, transparent 1px),
-      linear-gradient(90deg, var(--line) 1px, transparent 1px);
+      linear-gradient(rgba(255, 255, 255, 0.015) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.015) 1px, transparent 1px);
     background-size: 60px 60px;
-    opacity: .4;
-    mask-image: radial-gradient(ellipse 70% 60% at 50% 40%, black 20%, transparent 70%);
-    -webkit-mask-image: radial-gradient(ellipse 70% 60% at 50% 40%, black 20%, transparent 70%);
+    mask-image: radial-gradient(ellipse 60% 50% at 50% 50%, black 20%, transparent 70%);
+    -webkit-mask-image: radial-gradient(ellipse 60% 50% at 50% 50%, black 20%, transparent 70%);
   }
-  .hero-glow {
-    position: absolute;
-    top: 20%;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 500px;
-    height: 500px;
-    background: radial-gradient(circle, rgba(116,214,198,.12) 0%, transparent 60%);
-    pointer-events: none;
-  }
+
   .hero-content {
-    position: relative;
-    z-index: 1;
     text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
   }
-  .hero-badge { margin-bottom: 1.5rem; }
+
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.4rem 1rem;
+    border: 1px solid var(--glass-border);
+    border-radius: 100px;
+    background: var(--glass);
+  }
+
+  .badge-dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--cyan);
+    box-shadow: 0 0 8px var(--cyan-glow);
+    animation: glowPulse 2s ease-in-out infinite;
+  }
+
   .hero-title {
-    font-size: clamp(2.2rem, 6vw, 3.5rem);
-    margin-bottom: 1.25rem;
-    background: linear-gradient(135deg, #fff 40%, var(--silicon-bright));
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.3rem;
+  }
+
+  .title-en {
+    font-size: clamp(3.5rem, 10vw, 7rem);
+    font-weight: 900;
+    letter-spacing: 0.06em;
+    line-height: 1;
+    background: linear-gradient(135deg, var(--text) 0%, var(--cyan) 50%, var(--magenta) 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
+    animation: titleGlow 4s ease-in-out infinite;
   }
+
+  @keyframes titleGlow {
+    0%, 100% { filter: brightness(1); }
+    50% { filter: brightness(1.15); }
+  }
+
+  .title-zh {
+    font-size: clamp(1.2rem, 3vw, 1.8rem);
+    font-weight: 300;
+    color: var(--text-muted);
+    letter-spacing: 0.3em;
+  }
+
   .hero-subtitle {
-    color: var(--muted);
-    font-size: 1.05rem;
-    max-width: 600px;
-    margin: 0 auto 2rem;
-    line-height: 1.8;
+    font-size: clamp(1.05rem, 2vw, 1.3rem);
+    color: var(--text-secondary);
+    max-width: 560px;
+    line-height: 1.6;
+    font-weight: 400;
   }
-  .hero-actions {
+
+  .hero-lead {
+    font-size: 0.95rem;
+    color: var(--text-muted);
+    max-width: 500px;
+    line-height: 1.7;
+  }
+
+  /* AR data readout */
+  .hero-readout {
     display: flex;
-    gap: 1rem;
-    justify-content: center;
-    flex-wrap: wrap;
+    align-items: center;
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+    padding: 1rem 2rem;
+    background: var(--glass);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-sm);
+  }
+
+  .readout-item { display: flex; flex-direction: column; gap: 0.15rem; }
+
+  .readout-label {
+    font-family: var(--font-mono);
+    font-size: 0.6rem;
+    color: var(--text-muted);
+    letter-spacing: 0.12em;
+  }
+
+  .readout-value {
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    color: var(--cyan);
+    font-weight: 500;
+    letter-spacing: 0.06em;
+  }
+
+  .readout-divider {
+    width: 1px;
+    height: 28px;
+    background: var(--glass-border);
+  }
+
+  /* Scroll hint */
+  .scroll-hint {
+    position: absolute;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .scroll-line {
+    width: 1px;
+    height: 32px;
+    background: linear-gradient(to bottom, var(--cyan), transparent);
+    animation: scrollPulse 2s ease-in-out infinite;
+  }
+
+  @keyframes scrollPulse {
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 0.7; }
   }
 
   @media (max-width: 640px) {
-    .hero { padding: 4rem 0 3rem; min-height: auto; }
+    .hero-readout { flex-direction: column; gap: 0.75rem; padding: 1rem 1.25rem; }
+    .readout-divider { width: 40px; height: 1px; }
   }
 </style>

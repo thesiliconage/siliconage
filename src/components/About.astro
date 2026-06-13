@@ -1,0 +1,158 @@
+---
+// Module 2: What is Silicon Age
+---
+
+<section class="section" id="concept">
+  <div class="container">
+    <div class="concept-grid">
+      <!-- Left: text -->
+      <div class="concept-text">
+        <div class="section-tag animate-on-scroll">Core Concept</div>
+        <h2 class="section-title animate-on-scroll">What is the Silicon Age?</h2>
+        <p class="concept-lead animate-on-scroll">
+          The Silicon Age is more than a leap in computing power. It is the full evolution of information technology — from perception to cognition to decision-making — extending human intelligence onto silicon chips.
+        </p>
+        <p class="concept-body animate-on-scroll">
+          It marks the moment when algorithms cease to be abstract tools and become active participants in the physical world. Computation, intelligence, and reality converge into a single fabric — amplifying human capability, creativity, and reach.
+        </p>
+
+        <!-- Data tags -->
+        <div class="concept-tags animate-on-scroll">
+          <span class="data-tag">PERCEPTION → COGNITION → ACTION</span>
+          <span class="data-tag">HUMAN + MACHINE</span>
+        </div>
+      </div>
+
+      <!-- Right: visual card -->
+      <div class="concept-visual animate-on-scroll">
+        <div class="glass-card ar-card ar-card-extra concept-card">
+          <span class="corner-tr"></span>
+          <span class="corner-bl"></span>
+
+          <div class="card-diagram">
+            <div class="diagram-layer">
+              <span class="layer-num">01</span>
+              <span class="layer-name">Perception</span>
+              <span class="layer-desc">Sensors, vision, touch</span>
+            </div>
+            <div class="diagram-arrow">↓</div>
+            <div class="diagram-layer">
+              <span class="layer-num">02</span>
+              <span class="layer-name">Cognition</span>
+              <span class="layer-desc">Reasoning, learning, planning</span>
+            </div>
+            <div class="diagram-arrow">↓</div>
+            <div class="diagram-layer">
+              <span class="layer-num">03</span>
+              <span class="layer-name">Decision</span>
+              <span class="layer-desc">Action, adaptation, feedback</span>
+            </div>
+          </div>
+
+          <div class="card-footer-label mono-label">INTELLIGENCE PIPELINE // ACTIVE</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .concept-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+  }
+
+  .concept-lead {
+    font-size: 1.1rem;
+    color: var(--text);
+    line-height: 1.8;
+    margin-top: 0.75rem;
+  }
+
+  .concept-body {
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+    line-height: 1.8;
+    margin-top: 0.75rem;
+  }
+
+  .concept-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 1.5rem;
+  }
+
+  .data-tag {
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    color: var(--cyan);
+    letter-spacing: 0.1em;
+    padding: 0.3rem 0.8rem;
+    border: 1px solid var(--cyan-dim);
+    border-radius: 4px;
+    background: rgba(0, 240, 255, 0.03);
+  }
+
+  .concept-card { padding: 2rem; }
+
+  .card-diagram {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .diagram-layer {
+    display: grid;
+    grid-template-columns: 32px 1fr;
+    grid-template-rows: auto auto;
+    gap: 0 0.75rem;
+    padding: 0.75rem 1rem;
+    background: rgba(255, 255, 255, 0.015);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-sm);
+    align-items: center;
+  }
+
+  .layer-num {
+    grid-row: 1 / 3;
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    color: var(--magenta);
+    font-weight: 600;
+  }
+
+  .layer-name {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--text);
+  }
+
+  .layer-desc {
+    font-size: 0.78rem;
+    color: var(--text-muted);
+  }
+
+  .diagram-arrow {
+    text-align: center;
+    color: var(--cyan);
+    font-size: 0.9rem;
+    opacity: 0.4;
+  }
+
+  .card-footer-label {
+    margin-top: 1.25rem;
+    padding-top: 0.75rem;
+    border-top: 1px solid var(--glass-border);
+    text-align: right;
+  }
+
+  @media (max-width: 768px) {
+    .concept-grid {
+      grid-template-columns: 1fr;
+      gap: 2.5rem;
+    }
+  }
+</style>
