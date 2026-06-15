@@ -1,0 +1,187 @@
+---
+// Module 4: Tech Empowerment & Human Vision
+---
+
+<section class="section" id="vision">
+  <div class="container">
+    <div class="vision-header">
+      <div class="section-tag animate-on-scroll">Human Vision</div>
+      <h2 class="section-title animate-on-scroll">Technology Empowering Humanity</h2>
+      <p class="section-desc animate-on-scroll">
+        The Silicon Age is about amplifying human potential. Across three dimensions, technology serves as a bridge to a more equitable, productive, and boundless future.
+      </p>
+    </div>
+
+    <!-- Featured images -->
+    <div class="vision-showcase animate-on-scroll">
+      <div class="vision-showcase-item">
+        <img src="/images/classroom.jpg" alt="Modern classroom with technology" loading="lazy" />
+        <span class="showcase-label mono-label">EDUCATION</span>
+      </div>
+      <div class="vision-showcase-item">
+        <img src="/images/smart-farm.jpg" alt="Precision agriculture" loading="lazy" />
+        <span class="showcase-label mono-label">AGRICULTURE</span>
+      </div>
+      <div class="vision-showcase-item">
+        <img src="/images/tech-circuit.jpg" alt="Advanced technology infrastructure" loading="lazy" />
+        <span class="showcase-label mono-label">INDUSTRY</span>
+      </div>
+    </div>
+
+    <div class="vision-grid">
+      <!-- Card 1: Knowledge -->
+      <div class="glass-card ar-card ar-card-extra vision-card animate-on-scroll">
+        <span class="corner-tr"></span>
+        <span class="corner-bl"></span>
+        <div class="vision-icon">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>
+          </svg>
+        </div>
+        <h3>Knowledge for All</h3>
+        <p>Breaking information barriers. Quality education and expert knowledge become accessible to everyone, everywhere — opening human understanding to all.</p>
+        <div class="card-footer mono-label">DIMENSION: EQUITY</div>
+      </div>
+
+      <!-- Card 2: Productivity -->
+      <div class="glass-card ar-card ar-card-extra vision-card animate-on-scroll">
+        <span class="corner-tr"></span>
+        <span class="corner-bl"></span>
+        <div class="vision-icon icon-magenta">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
+          </svg>
+        </div>
+        <h3>Productivity Leap</h3>
+        <p>As humanity's super-tool, technology multiplies individual creativity and work efficiency by orders of magnitude — unlocking potential we never knew we had.</p>
+        <div class="card-footer mono-label">DIMENSION: AMPLIFICATION</div>
+      </div>
+
+      <!-- Card 3: Exploration -->
+      <div class="glass-card ar-card ar-card-extra vision-card animate-on-scroll">
+        <span class="corner-tr"></span>
+        <span class="corner-bl"></span>
+        <div class="vision-icon icon-blue">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/>
+          </svg>
+        </div>
+        <h3>Boundless Exploration</h3>
+        <p>In science, space, and beyond — human-machine collaboration pushes the frontiers of what we know and where we can go. No horizon is out of reach.</p>
+        <div class="card-footer mono-label">DIMENSION: FRONTIER</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .vision-header {
+    text-align: center;
+    max-width: 660px;
+    margin: 0 auto 3.5rem;
+  }
+
+  .vision-header .section-tag { justify-content: center; }
+  .vision-header .section-tag::before { display: none; }
+
+  .vision-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+
+  .vision-card {
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .vision-icon {
+    width: 52px;
+    height: 52px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+    background: var(--cyan-dim);
+    color: var(--cyan);
+    margin-bottom: 1.25rem;
+  }
+
+  .icon-magenta {
+    background: var(--magenta-dim);
+    color: var(--magenta);
+  }
+
+  .icon-blue {
+    background: rgba(59, 130, 246, 0.12);
+    color: #3b82f6;
+  }
+
+  .vision-card h3 {
+    font-size: 1.1rem;
+    margin-bottom: 0.6rem;
+  }
+
+  .vision-card p {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    line-height: 1.7;
+    flex: 1;
+  }
+
+  .card-footer {
+    margin-top: 1.25rem;
+    padding-top: 0.75rem;
+    border-top: 1px solid var(--glass-border);
+    color: var(--text-muted);
+  }
+
+  .vision-showcase {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.75rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .vision-showcase-item {
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+    border: 1px solid var(--glass-border);
+    position: relative;
+    aspect-ratio: 16/10;
+    transition: border-color 0.3s;
+  }
+
+  .vision-showcase-item:hover {
+    border-color: var(--cyan);
+  }
+
+  .vision-showcase-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    filter: brightness(0.8) saturate(0.85);
+    transition: filter 0.3s;
+  }
+
+  .vision-showcase-item:hover img {
+    filter: brightness(1) saturate(1);
+  }
+
+  .showcase-label {
+    position: absolute;
+    bottom: 0.5rem;
+    left: 0.5rem;
+    background: rgba(10, 12, 18, 0.85);
+    padding: 0.15rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.55rem;
+  }
+
+  @media (max-width: 768px) {
+    .vision-grid { grid-template-columns: 1fr; }
+  }
+</style>

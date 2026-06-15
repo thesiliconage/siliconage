@@ -1,0 +1,262 @@
+---
+// Hero section — full-screen holographic landing
+---
+
+<section class="hero" id="hero">
+  <!-- Decorative orbs -->
+  <div class="hero-orb hero-orb-cyan" aria-hidden="true"></div>
+  <div class="hero-orb hero-orb-magenta" aria-hidden="true"></div>
+
+  <!-- Grid overlay -->
+  <div class="hero-grid" aria-hidden="true"></div>
+
+  <!-- Scan line -->
+  <div class="scan-line" aria-hidden="true"></div>
+
+  <div class="container hero-content">
+<h1 class="hero-title animate-on-scroll">
+      <span class="title-en">Silicon Age</span>
+    </h1>
+
+    <p class="hero-subtitle animate-on-scroll">
+      Where computation, intelligence, and the physical world seamlessly interweave.
+    </p>
+
+    <p class="hero-lead animate-on-scroll">
+      When intelligence extends from the digital realm into physical space, a new era of harmonious co-building between humans and machines is dawning.
+    </p>
+
+    <!-- AR-style data readout -->
+    <div class="hero-readout animate-on-scroll">
+      <div class="readout-item">
+        <span class="readout-label">STATUS</span>
+        <span class="readout-value">OPERATIONAL</span>
+      </div>
+      <div class="readout-divider"></div>
+      <div class="readout-item">
+        <span class="readout-label">MISSION</span>
+        <span class="readout-value">EMPOWER HUMANITY</span>
+      </div>
+    </div>
+
+    <!-- Tech era showcase -->
+    <div class="hero-showcase animate-on-scroll">
+      <div class="showcase-item">
+        <img src="/images/data-streams.jpg" alt="Data streams" loading="lazy" />
+      </div>
+      <div class="showcase-item">
+        <img src="/images/ai-tech.jpg" alt="AI technology" loading="lazy" />
+      </div>
+      <div class="showcase-item">
+        <img src="/images/warehouse-tech.jpg" alt="Smart warehouse" loading="lazy" />
+      </div>
+      <div class="showcase-item">
+        <img src="/images/humanoid.jpg" alt="Humanoid robot" loading="lazy" />
+      </div>
+    </div>
+  </div>
+
+  <!-- Scroll hint -->
+  <div class="scroll-hint" aria-hidden="true">
+    <div class="scroll-line"></div>
+    <span class="mono-label">SCROLL</span>
+  </div>
+</section>
+
+<style>
+  .hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    z-index: 1;
+  }
+
+  .hero-orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(120px);
+    pointer-events: none;
+  }
+
+  .hero-orb-cyan {
+    width: 500px; height: 500px;
+    top: 15%; left: -8%;
+    background: radial-gradient(circle, rgba(0, 240, 255, 0.07) 0%, transparent 70%);
+    animation: float 8s ease-in-out infinite;
+  }
+
+  .hero-orb-magenta {
+    width: 400px; height: 400px;
+    bottom: 10%; right: -5%;
+    background: radial-gradient(circle, rgba(176, 38, 255, 0.05) 0%, transparent 70%);
+    animation: float 10s ease-in-out infinite reverse;
+  }
+
+  .hero-grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(255, 255, 255, 0.015) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.015) 1px, transparent 1px);
+    background-size: 60px 60px;
+    mask-image: radial-gradient(ellipse 60% 50% at 50% 50%, black 20%, transparent 70%);
+    -webkit-mask-image: radial-gradient(ellipse 60% 50% at 50% 50%, black 20%, transparent 70%);
+  }
+
+  .hero-content {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+    padding-top: var(--nav-height);
+  }
+
+  .hero-title {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.3rem;
+  }
+
+  .title-en {
+    font-size: clamp(3.5rem, 10vw, 7rem);
+    font-weight: 900;
+    letter-spacing: 0.06em;
+    line-height: 1;
+    background: linear-gradient(135deg, var(--text) 0%, var(--cyan) 50%, var(--magenta) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: titleGlow 4s ease-in-out infinite;
+  }
+
+  @keyframes titleGlow {
+    0%, 100% { filter: brightness(1); }
+    50% { filter: brightness(1.15); }
+  }
+
+  .hero-subtitle {
+    font-size: clamp(1.05rem, 2vw, 1.3rem);
+    color: var(--text-secondary);
+    max-width: 560px;
+    line-height: 1.6;
+    font-weight: 400;
+  }
+
+  .hero-lead {
+    font-size: 0.95rem;
+    color: var(--text-muted);
+    max-width: 500px;
+    line-height: 1.7;
+  }
+
+  /* AR data readout */
+  .hero-readout {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+    padding: 1rem 2rem;
+    background: var(--glass);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-sm);
+  }
+
+  .readout-item { display: flex; flex-direction: column; gap: 0.15rem; }
+
+  .readout-label {
+    font-family: var(--font-mono);
+    font-size: 0.6rem;
+    color: var(--text-muted);
+    letter-spacing: 0.12em;
+  }
+
+  .readout-value {
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    color: var(--cyan);
+    font-weight: 500;
+    letter-spacing: 0.06em;
+  }
+
+  .readout-divider {
+    width: 1px;
+    height: 28px;
+    background: var(--glass-border);
+  }
+
+  /* Scroll hint */
+  .scroll-hint {
+    position: absolute;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .scroll-line {
+    width: 1px;
+    height: 32px;
+    background: linear-gradient(to bottom, var(--cyan), transparent);
+    animation: scrollPulse 2s ease-in-out infinite;
+  }
+
+  @keyframes scrollPulse {
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 0.7; }
+  }
+
+  /* Showcase images */
+  .hero-showcase {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0.75rem;
+    margin-top: 2.5rem;
+    max-width: 600px;
+    width: 100%;
+  }
+
+  .showcase-item {
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+    border: 1px solid var(--glass-border);
+    aspect-ratio: 1;
+    transition: border-color 0.3s, transform 0.3s;
+  }
+
+  .showcase-item:hover {
+    border-color: var(--cyan);
+    transform: scale(1.05);
+  }
+
+  .showcase-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    filter: brightness(0.85) saturate(0.9);
+    transition: filter 0.3s;
+  }
+
+  .showcase-item:hover img {
+    filter: brightness(1) saturate(1);
+  }
+
+  @media (max-width: 768px) {
+    .hero-showcase { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  @media (max-width: 640px) {
+    .hero-readout { flex-direction: column; gap: 0.75rem; padding: 1rem 1.25rem; }
+    .readout-divider { width: 40px; height: 1px; }
+  }
+</style>

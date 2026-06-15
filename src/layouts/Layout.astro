@@ -1,0 +1,206 @@
+---
+import '../styles/global.css';
+import Header from '../components/Header.astro';
+
+interface Props {
+  title: string;
+  description?: string;
+}
+
+const {
+  title,
+  description = 'Silicon Age — Where computation, intelligence, and the physical world converge. A new era of harmony between humans and machines.',
+} = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content={description} />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="preload" href="/fonts/inter-var.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="/fonts/jetbrainsmono-var.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="canonical" href={new URL(Astro.url.pathname, Astro.site?.href || 'https://www.thesiliconage.org').href} />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content={title} />
+  <meta property="og:description" content={description} />
+  <meta property="og:url" content={new URL(Astro.url.pathname, Astro.site?.href || 'https://www.thesiliconage.org').href} />
+  <meta property="og:site_name" content="Silicon Age" />
+  <meta property="og:locale" content="en_US" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content={title} />
+  <meta name="twitter:description" content={description} />
+  <title>{title}</title>
+</head>
+<body>
+  <canvas id="particle-canvas" aria-hidden="true"></canvas>
+  <Header />
+  <main><slot /></main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-glow-line"></div>
+      <p class="footer-email"><a href="mailto:contact@mail.thesiliconage.org">contact@mail.thesiliconage.org</a></p>
+      <p class="footer-text">© 2026 Silicon Age Project. Empowering humanity through technology.</p>
+    </div>
+  </footer>
+
+  <!-- Scroll observer -->
+  <script>
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) entry.target.classList.add('visible');
+        });
+      },
+      { threshold: 0.1, rootMargin: '0px 0px -40px 0px' }
+    );
+    document.querySelectorAll('.animate-on-scroll').forEach((el) => observer.observe(el));
+  </script>
+
+  <!-- Point Cloud Particle Background with Parallax -->
+  <script>
+    const canvas = document.getElementById('particle-canvas') as HTMLCanvasElement;
+    if (canvas) {
+      const ctx = canvas.getContext('2d');
+      if (ctx) {
+      let w = 0, h = 0;
+      let animId = 0;
+      let resizeTimer = 0;
+      let mouseX = 0, mouseY = 0;
+      const isMobile = window.matchMedia('(max-width: 768px)').matches;
+      const COUNT = isMobile ? 50 : 100;
+      const CONNECT_DIST = isMobile ? 90 : 130;
+      interface Particle { x: number; y: number; z: number; vx: number; vy: number; r: number; a: number }
+      let particles: Particle[] = [];
+
+      function resize() {
+        w = canvas.width = window.innerWidth;
+        h = canvas.height = window.innerHeight;
+      }
+
+      function init() {
+        resize();
+        particles = Array.from({ length: COUNT }, () => ({
+          x: Math.random() * w,
+          y: Math.random() * h,
+          z: Math.random() * 0.6 + 0.4,
+          vx: (Math.random() - 0.5) * 0.3,
+          vy: (Math.random() - 0.5) * 0.3,
+          r: Math.random() * 1.2 + 0.4,
+          a: Math.random() * 0.3 + 0.08,
+        }));
+      }
+
+      function draw() {
+        ctx.clearRect(0, 0, w, h);
+        const px = w ? (mouseX / w - 0.5) * 20 : 0;
+        const py = h ? (mouseY / h - 0.5) * 20 : 0;
+
+        for (let i = 0; i < particles.length; i++) {
+          for (let j = i + 1; j < particles.length; j++) {
+            const pi = particles[i], pj = particles[j];
+            const xi = pi.x + px * pi.z, yi = pi.y + py * pi.z;
+            const xj = pj.x + px * pj.z, yj = pj.y + py * pj.z;
+            const dx = xi - xj, dy = yi - yj;
+            const dist = Math.sqrt(dx * dx + dy * dy);
+            if (dist < CONNECT_DIST) {
+              const alpha = (1 - dist / CONNECT_DIST) * 0.1 * Math.min(pi.z, pj.z);
+              ctx.strokeStyle = `rgba(0, 240, 255, ${alpha})`;
+              ctx.lineWidth = 0.4;
+              ctx.beginPath();
+              ctx.moveTo(xi, yi);
+              ctx.lineTo(xj, yj);
+              ctx.stroke();
+            }
+          }
+        }
+
+        for (const p of particles) {
+          const x = p.x + px * p.z;
+          const y = p.y + py * p.z;
+          ctx.beginPath();
+          ctx.arc(x, y, p.r * p.z, 0, Math.PI * 2);
+          ctx.fillStyle = `rgba(0, 240, 255, ${p.a * p.z})`;
+          ctx.fill();
+        }
+      }
+
+      function update() {
+        for (const p of particles) {
+          p.x += p.vx;
+          p.y += p.vy;
+          if (p.x < 0 || p.x > w) p.vx *= -1;
+          if (p.y < 0 || p.y > h) p.vy *= -1;
+        }
+      }
+
+      function loop() {
+        update();
+        draw();
+        animId = requestAnimationFrame(loop);
+      }
+
+      document.addEventListener('visibilitychange', () => {
+        if (document.hidden) {
+          if (animId) { cancelAnimationFrame(animId); animId = 0; }
+        } else {
+          if (!animId) loop();
+        }
+      });
+
+      init();
+      loop();
+      window.addEventListener('resize', () => {
+        clearTimeout(resizeTimer);
+        resizeTimer = window.setTimeout(resize, 150);
+      });
+      document.addEventListener('mousemove', (e) => { mouseX = e.clientX; mouseY = e.clientY; });
+      }
+    }
+  </script>
+</body>
+</html>
+
+<style>
+  .site-footer {
+    position: relative;
+    z-index: 1;
+    padding: 2.5rem 0;
+    text-align: center;
+  }
+
+  .footer-glow-line {
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--cyan), var(--magenta), transparent);
+    opacity: 0.3;
+    margin-bottom: 2rem;
+  }
+
+  .footer-email {
+    text-align: center;
+    margin-bottom: 0.75rem;
+  }
+
+  .footer-email a {
+    font-family: var(--font-mono);
+    font-size: 0.82rem;
+    color: var(--text-muted);
+    transition: color 0.2s;
+  }
+
+  .footer-email a:hover {
+    color: var(--cyan);
+  }
+
+  .footer-text {
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    letter-spacing: 0.05em;
+  }
+</style>
